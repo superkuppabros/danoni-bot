@@ -1,0 +1,16 @@
+---
+include:
+- "**/*.rb"
+exclude:
+- spec/**/*
+- test/**/*
+- vendor/**/*
+- ".bundle/**/*"
+require: 
+- discordrb
+domains: []
+reporters:
+- rubocop
+require_paths: []
+plugins: []
+max_files: 5000
