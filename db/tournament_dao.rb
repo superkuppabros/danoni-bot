@@ -46,6 +46,14 @@ class TournamentDao
     _client.query('SELECT * FROM tournament_member ORDER BY league ASC')
   end
 
+  def get_league_members_name(league)
+    sql = %(
+      SELECT display_name FROM tournament_member where league = ? ORDER BY id ASC
+    )
+    stmt = _client.prepare(sql)
+    stmt.execute(league)
+  end
+
   def update_league(league, name)
     sql = %(
       UPDATE tournament_member SET league = ? where display_name = ?

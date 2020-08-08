@@ -19,6 +19,10 @@ class TournamentService
     @dao.get_all_members
   end
 
+  def self.league_members_name(league)
+    @dao.get_league_members_name(league)
+  end
+
   # arg: '/team N m1 m2...'
   # N = a number of members
   # m_i = member's name

@@ -90,4 +90,17 @@ bot.message(start_with: '/result') do |event|
   event.respond "リーグ#{league}の結果\n" + result.join("\n")
 end
 
+bot.message(start_with: '/next_game') do |event|
+  arr = event.message.to_s.split(' ')
+  league = arr[1].to_i
+  sets = arr[2].to_s.split('').each_slice(2).to_a
+  game_name = arr[3].to_s || ''
+  members_name = TournamentService.league_members_name(league).to_a
+  match_strs = sets.map do |set|
+    "・#{members_name[(set[0].to_i - 1)]['display_name']}さん vs #{members_name[(set[1].to_i - 1)]['display_name']}さん"
+  end
+  result_message = "リーグ#{league} #{game_name}を開始します。\n#{match_strs.join("\n")}\n準備はよろしいですか？"
+  event.respond result_message
+end
+
 bot.run
