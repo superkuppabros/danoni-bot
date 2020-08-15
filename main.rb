@@ -3,6 +3,7 @@ require 'discordrb'
 require_relative './service/result_service.rb'
 require_relative './service/tournament_service.rb'
 require_relative './db/card_dao.rb'
+require_relative './db/score_dao.rb'
 require_relative './env.rb'
 
 bot = Discordrb::Bot.new token: _bot_token
@@ -26,6 +27,16 @@ bot.message(content: 'chance') do |event|
   card = database_service.get_random_card
   return_message = "#{author}さんのカード: [#{card['attribute']}]#{card['name']}\n#{card['explanation']}"
   event.respond return_message
+end
+
+bot.message(content: 'random') do |event|
+  dao = ScoreDao.new
+  works = dao.get_random_works
+  return_message = "曲名: #{works['title']}
+URL: #{works['page_url']}
+補正値: #{works['adjustment']}"
+
+  event.author.pm(return_message)
 end
 
 bot.message(start_with: '/team') do |event|
