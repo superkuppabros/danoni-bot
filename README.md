@@ -3,6 +3,7 @@
 
 ## コマンド一覧
 - `chance`: チャンスカードを引く
+- `random`: ランセレを引く
 - `/initialize {password}`: DBの初期化
 - `/join {name}`: 参加者の追加
 - `/delete {name}`: 参加者の削除
@@ -10,6 +11,8 @@
 - `/show_members`: 参加者確認
 - `/game {league} {winner} {loser}`: ゲームの登録
 - `/result {league}`: 結果の確認
+- `/next_game {league} {pair} {match name}`: 次試合の組分け
+  - pair: 数字を入れる、1234なら1-2, 3-4の試合
 
 ## その他動作
 - CW Editionの1行リザルトに対して情報のまとめ表示
